@@ -19,6 +19,7 @@ import customerApi from "../service/customerService";
 import deviceApi from "../service/deviceService";
 import { useParams } from "react-router-dom";
 import instance from "../service/client";
+const { Option } = Select;
 const { TextArea } = Input;
 
 const CustomerDetail = () => {
@@ -275,6 +276,10 @@ const CustomerDetail = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
+
+  const onControlSelect = (value) => {
+    console.log(`selected ${value}`);
+  };
   return (
     <div>
       <div>
@@ -299,6 +304,10 @@ const CustomerDetail = () => {
           <div className="row">
             <div>Tên: </div>
             <div style={{ marginLeft: "10px" }}>{customer?.name}</div>
+          </div>
+          <div className="row">
+            <div>Role: </div>
+            <div style={{ marginLeft: "10px" }}>{customer?.role}</div>
           </div>
           <div className="row">
             <div>Email: </div>
@@ -449,7 +458,7 @@ const CustomerDetail = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
+          initialValues={{isControl: 'true' }}
           onFinish={onFinish}
           //   onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -487,6 +496,16 @@ const CustomerDetail = () => {
               ]}
             />
           </Form.Item>
+          <Form.Item name="isControl" label="Control" rules={[{ required: true }]}>
+            <Select
+              placeholder="Select"
+              onChange={onControlSelect}
+            >
+              <Option value="true">Điều khiển</Option>
+              <Option value="false">Tự động</Option>        
+            </Select>
+          </Form.Item>
+       
 
           <Form.Item
             label="Mô tả"

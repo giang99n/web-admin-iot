@@ -40,6 +40,11 @@ const Reports = () => {
       ),
     },
     {
+      title: "Nhân viên",
+      dataIndex: "nameUser",
+      key: "nameUser",
+    },
+    {
       title: "Khách hàng",
       dataIndex: "customerName",
       key: "customerName",

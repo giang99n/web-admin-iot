@@ -119,7 +119,7 @@ const Customers = () => {
       city: city,
       district: district,
       ward: ward,
-      role: 'customer'
+      //role: 'customer'
     }
     console.log(final)
     const onSubmitForm = async () => {
@@ -232,6 +232,10 @@ const Customers = () => {
     setWard(selectedWard.Name);
   };
 
+  const onRoleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
 
   return (
     <div>
@@ -292,7 +296,7 @@ const Customers = () => {
           {/* <Form.Item label="Địa chỉ" name="address">
             <Input />
           </Form.Item> */}
-{/* 
+          {/* 
           <Form.Item label="Tỉnh thành" name="city">
             <Select
               placeholder="Select"
@@ -320,7 +324,7 @@ const Customers = () => {
               {wards.map(ward => <Option key={ward.Id} value={ward.Id}>{ward.Name}</Option>)}
             </Select>
           </Form.Item> */}
-          
+
           <Form.Item label="Ví trí" name="location">
             <Input />
           </Form.Item>
@@ -334,6 +338,7 @@ const Customers = () => {
         onCancel={hideModalCreate}
         okText="OK"
         cancelText="Cancel"
+   
       >
         <Form
           name="basic"
@@ -341,27 +346,27 @@ const Customers = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
+          initialValues={{role: 'customer' }}
           onFinish={onFinish}
           //   onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item label="Tên" name="name"  rules={[{ required: true, message: "Vui lòng nhập Tên!" }]}>
+          <Form.Item label="Tên" name="name" rules={[{ required: true, message: "Vui lòng nhập Tên!" }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="Email" name="email"  rules={[{ required: true, message: "Vui lòng nhập Eamil!" }]}>
+          <Form.Item label="Email" name="email" rules={[{ required: true, message: "Vui lòng nhập Eamil!" }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="Mật khẩu" name="password"  rules={[{ required: true, message: "Vui lòng nhập Mật khẩu!" }]}>
+          <Form.Item label="Mật khẩu" name="password" rules={[{ required: true, message: "Vui lòng nhập Mật khẩu!" }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="Số điện thoại" name="phone"  rules={[{ required: true, message: "Vui lòng nhập Số điện thoại!" }]}>
+          <Form.Item label="Số điện thoại" name="phone" rules={[{ required: true, message: "Vui lòng nhập Số điện thoại!" }]}>
             <Input />
           </Form.Item>
           {/* <Form.Item label="Địa chỉ" name="address">
             <Input />
           </Form.Item> */}
-          <Form.Item label="Tỉnh thành" name="cityId"  rules={[{ required: true, message: "Vui lòng chọn Tỉnh thành!" }]}>
+          <Form.Item label="Tỉnh thành" name="cityId" rules={[{ required: true, message: "Vui lòng chọn Tỉnh thành!" }]}>
             <Select
               placeholder="Select"
               onChange={handleCityChange}
@@ -371,7 +376,7 @@ const Customers = () => {
               {cities.map(city => <Option key={city.Id} value={city.Id}>{city.Name}</Option>)}
             </Select>
           </Form.Item>
-          <Form.Item label="Quận huyện" name="districtId"  rules={[{ required: true, message: "Vui lòng chọn Quận huyện!" }]}>
+          <Form.Item label="Quận huyện" name="districtId" rules={[{ required: true, message: "Vui lòng chọn Quận huyện!" }]}>
             <Select
               style={{ marginRight: "55px" }}
               placeholder="Select"
@@ -381,7 +386,7 @@ const Customers = () => {
               {districts.map(district => <Option key={district.Id} value={district.Id}>{district.Name}</Option>)}
             </Select>
           </Form.Item>
-          <Form.Item label="Phường xã" name="wardId"  rules={[{ required: true, message: "Vui lòng chọn Phường xã!" }]}>
+          <Form.Item label="Phường xã" name="wardId" rules={[{ required: true, message: "Vui lòng chọn Phường xã!" }]}>
             <Select
               style={{ marginRight: "55px" }}
               placeholder="Select"
@@ -392,8 +397,18 @@ const Customers = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item label="Ví trí" name="location"  rules={[{ required: true, message: "Vui lòng chọn Vị trí!" }]}>
+          <Form.Item label="Ví trí" name="location" rules={[{ required: true, message: "Vui lòng chọn Vị trí!" }]}>
             <Input />
+          </Form.Item>
+          <Form.Item name="role" label="Role" rules={[{ required: true }]}>
+            <Select
+              placeholder="Select"
+              onChange={onRoleChange}
+            >
+              <Option value="customer">customer</Option>
+              <Option value="admin">admin</Option>        
+              <Option value="support">support</Option>
+            </Select>
           </Form.Item>
         </Form>
       </Modal>
