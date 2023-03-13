@@ -150,7 +150,7 @@ const CustomerDetail = () => {
     Promise.all([getUser, getDeviceList])
       .then((res) => {
         setCustomer(res[0].data.user);
-        setListDevice(res[1].data.devices);
+        setListDevice(res[1].data.devices.sort((a, b) => b.statusRequest - a.statusRequest));
         setLisErrDevice(
           res[1].data.devices.filter((item) => item.status === false)
         );
@@ -222,7 +222,7 @@ const CustomerDetail = () => {
   const onFinishEdit = (values) => {
     const final = {
       ...values,
-      statusRequest: values.statusRequest == "action" ? true : false,
+      statusRequest: values.statusRequest == "action" ? false : true,
     };
     const onSubmitForm = async () => {
       await instance
