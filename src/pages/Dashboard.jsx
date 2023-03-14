@@ -39,7 +39,7 @@ const Dashboard = () => {
           setListUser(res[0].data.users);
           setListDevice(res[1].data.devices);
           setLisErrDevice(
-            res[1].data.devices.filter((item) => item.status === false)
+            res[1].data.devices.filter((item) => item.statusRequest === true)
           );
           var output = Object.entries(res[2].data.result).map(
             ([name, value]) => ({ name, value })
